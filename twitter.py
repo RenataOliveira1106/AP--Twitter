@@ -1,19 +1,13 @@
-from twython import Twython
+# importando módulos
+import tweepy
+from auth import *
 
-from auth import (
-    consumer_key,
-    consumer_secret,
-    access_token,
-    access_token_secret
-)
+# Autenticando usuário
+auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
 
-twitter = Twython(
-    consumer_key,
-    consumer_secret,
-    access_token,
-    access_token_secret
-)
+# Autenticando Token
+auth.set_access_token(access_token, access_token_secret)
+api = tweepy.API(auth)
 
-message = "10/10!"
-twitter.update_status(status=message)
-print("Tweeted: %s" % message)
+# tweet
+api.update_status(status =" Teste, está funcionando!")
